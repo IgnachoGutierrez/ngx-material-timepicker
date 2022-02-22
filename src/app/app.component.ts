@@ -1,14 +1,18 @@
 /* tslint:disable:max-line-length */
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxMaterialTimepickerTheme } from './material-timepicker/models/ngx-material-timepicker-theme.interface';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-
+export class AppComponent implements OnInit {
+    lastTime: BehaviorSubject<string> = new BehaviorSubject<string>('11:03 am');
+    ngOnInit(): void {
+        this.lastTime.next('12:05 am');
+    }
     simpleExamples = `
        <div class="12hr-example">
             <input placeholder="12hr format (default settings)" aria-label="12hr format" [ngxTimepicker]="default" readonly>
